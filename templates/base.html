@@ -25,13 +25,28 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Non-Veg</a>
               </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>
+              </li>
+              <li class="nav-item">
+                <h2 class="ca">{{user.username}}</h2>
+              </li>
+              {% if user.is_staff %}
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_logout' %}">Add Item</a>
+              </li>
+              {% endif %}
+              
+              {% else %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Registration
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Customer Registration</a></li>
-                  <li><a class="dropdown-item" href="#">Admin Registration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'customer_registration' %}">Customer Registration</a></li>
+                  <li><a class="dropdown-item" href="{% url 'master_registration' %}">Admin Registration</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -39,10 +54,12 @@
                     Login
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Customer Login</a></li>
-                  <li><a class="dropdown-item" href="#">Admin Login</a></li>
+                  <li><a class="dropdown-item" href="{% url 'customer_login' %}">Customer Login</a></li>
+                  <li><a class="dropdown-item" href="{% url 'master_login' %}">Admin Login</a></li>
                 </ul>
               </li>
+              {% endif %}
+              
               
             </ul>
             <form class="d-flex" role="search">
