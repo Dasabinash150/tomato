@@ -7,7 +7,38 @@ Home
 
 
 {% block content %}
-    <center>
-        {{UO.username}}
-    </center>
+<div class="container-fluid hero-content">
+    <div class="row ">
+        <div class="clo-12">
+            <h1>Experience our BestFood on DoorStep..!</h1>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5">
+    <div>
+        <h2 class="text-center py-2 mb-4">Best Foods</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for i in items %}
+              
+            
+            <div class="col-12 col-lg-4 ">
+                <div class="card food-card" style="width: 100%;">
+                    <img class="card-img-top" src="../media/{{i.item_photo}}" alt="Card image cap " width="100">
+                    <div class="card-body">
+                        <h3>₹ {{i.item_price}}</h3>
+                        <h5 class="card-title">{{i.item_name}}</h5>
+                        <p class="card-text">{{i.item_desc}}</p>
+                        <div class="text-center">
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 {% endblock content %}

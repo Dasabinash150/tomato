@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+All item
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container">
+        {% if messages %}
+                {% for msg  in messages %}
+                    <div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+                        <strong>{{msg}}<strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                {% endfor %}
+            {% endif %}
+        <div class="col-12 rounded shadow-lg p-2">
+            <h2 class="text-center">ALL ITEM</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{item.item_name}}</td>
+                        <td>{{item.item_desc}}</td>
+                        <td>{{item.item_price}}</td>
+                        <td class="text-center">
+                            <a href="update/{{item.pk}}" class="mx-2 btn btn-success">Update</a>
+                            <a href="delete/{{item.pk}}" class="mx-2 btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}
