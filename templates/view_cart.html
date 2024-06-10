@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container-fluid py-5">
+    <div>
+        <h2 class="text-center">Cart ITEM</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+         
+        </div>
+    </div>
+    <div class="container">
+        {% if messages %}
+                {% for msg  in messages %}
+                    <div class="alert alert-{{msg.tags}} alert-dismissible fade show" role="alert">
+                        <strong>{{msg}}<strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                {% endfor %}
+            {% endif %}
+        <div class="col-12 rounded shadow-lg p-2">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in CI %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{item.item_name}}</td>
+                        <td>{{item.price}}</td>
+                        <td class="text-center">{{item.qty}}</td>
+                        <td class="text-center">{{item}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td><b>Sub Total Prine</b></td>
+                        <td class="text-center"><b>{{overall_total_price|floatformat:2}}</b></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

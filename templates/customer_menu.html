@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container-fluid py-5">
+    <div>
+        <h2 class="text-center py-2 mb-4">Best Foods</h2>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            {% for i in items %}
+
+            <div class="col-12 col-lg-4 ">
+                <form action="{% url 'addtocart' %}" method="post">
+                    {% csrf_token %}
+                    <div class="card food-card" style="width: 100%;">
+                        <img class="card-img-top" src="{{i.item_photo.url}}" alt="Card image cap " width="100">
+                        <div class="card-body">
+                            <h3>₹ {{i.item_price}}</h3>
+                            <h5 class="card-title">{{i.item_name}}</h5>
+                            <p class="card-text">{{i.item_desc}}</p>
+                            <div class="p-2">
+                                <input type="number" placeholder="Qty" name="qty" value="1">
+                                <input type="hidden" name="itempk" value="{{i.item_id}}">
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="Add to Cart" class="btn btn-primary">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
